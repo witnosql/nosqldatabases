@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+    </style>
+  </head>
+
+  <body>
+    
+    
+
+    <div class="ui fixed top pointing inverted stackable menu labmenu">
+      <header class="header item">
+        <i id="toc" class="sitemap icon"></i>
+        
+          <a href="../index.html">  CRUD  </a>
+        
+      </header>
+      <div class="right tab-menu menu">
+        
+          <a class="item" data-tab="Update">
+            Update
+          </a>
+        
+          <a class="item" data-tab="01">
+            01
+          </a>
+        
+          <a class="item" data-tab="02">
+            02
+          </a>
+        
+          <a class="item" data-tab="03">
+            03
+          </a>
+        
+          <a class="item" data-tab="Exercises">
+            Exercises
+          </a>
+        
+      </div>
+    </div>
+
+    <div class="ui segment pushable">
+      <div class="ui inverted labeled icon left inline vertical sidebar menu">
+        <br><br>
+        
+          
+            <a class="item" href="../../topic-02-crud/book-a-create/index.html">
+              Create
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic-02-crud/book-b-read/index.html">
+              Read (find)
+            </a>
+          
+        
+          
+            <a class="active item" href="../../topic-02-crud/book-c-update/index.html">
+              Update
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic-02-crud/book-d-delete/index.html">
+              Delete
+            </a>
+          
+        
+      </div>
+      <div class="pusher" tabindex="-1">
+        <div class="ui basic segment" id="labchat">
+          <br>
+          
+            <div  class="ui tab segment lab" data-tab="Update">
+              <h1>Update</h1>
+<p>This lab examines the methods used for updating documents in MongoDB.</p>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="01">
+              <h1>db.collection.update()</h1>
+<p>Modifies an existing document or documents in a collection. The method can modify specific fields of an existing document or documents or replace an existing document entirely, depending on the update parameter. By default, the update() method updates a single document. Set the Multi Parameter to update all documents that match the query criteria.</p>
+<pre><code>db.collection.update(query, update, options)</code></pre>
+<p>The update() method has the following form:</p>
+<pre><code>db.collection.update(
+   &lt;query&gt;,
+   &lt;update&gt;,
+   {
+     upsert: &lt;boolean&gt;,
+     multi: &lt;boolean&gt;,
+     writeConcern: &lt;document&gt;,
+     collation: &lt;document&gt;,
+     arrayFilters: [ &lt;filterdocument1&gt;, ... ]
+   }
+)</code></pre>
+<h2>Example: Update one field</h2>
+<p>This is an example of a document in a books collection:</p>
+<pre><code>{
+  _id: 1,
+  item: &quot;TBD&quot;,
+  stock: 0,
+  info: { publisher: &quot;1111&quot;, pages: 430 },
+  tags: [ &quot;technology&quot;, &quot;computer&quot; ],
+  ratings: [ { by: &quot;ijk&quot;, rating: 4 }, { by: &quot;lmn&quot;, rating: 5 } ],
+  reorder: false
+}</code></pre>
+<p>The following update statement is made up of two parts.</p>
+<ul>
+<li>The first part is the query, which finds the document with an <code>_id</code> of 1. Queries in update statements can use all of the query operators we examined in the previous section on the find() method.</li>
+<li>The second part is the update itself. This uses the $set operator, and here we are setting the value of the stock property to 5.</li>
+</ul>
+<pre><code>db.books.update(
+   { _id: 1 },
+   { $set: { stock: 5 } }
+)</code></pre>
+<h2>Example: Update multiple values</h2>
+<p>See again our example document:</p>
+<pre><code>{
+  _id: 1,
+  item: &quot;TBD&quot;,
+  stock: 5,
+  info: { publisher: &quot;1111&quot;, pages: 430 },
+  tags: [ &quot;technology&quot;, &quot;computer&quot; ],
+  ratings: [ { by: &quot;ijk&quot;, rating: 4 }, { by: &quot;lmn&quot;, rating: 5 } ],
+  reorder: false
+}</code></pre>
+<p>The following update statement sets several properties to new values. Note that to update the publisher property in the info document, info.publisher is used. In updating the ratings array, ratings.1 is used to target the second array element (counting of array elements begins at 0).</p>
+<pre><code>db.books.update(
+   { _id: 1 },
+   {
+     $set: {
+       item: &quot;ABC123&quot;,
+       &quot;info.publisher&quot;: &quot;2222&quot;,
+       tags: [ &quot;software&quot; ],
+       &quot;ratings.1&quot;: { by: &quot;xyz&quot;, rating: 3 }
+     }
+   }
+)</code></pre>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="02">
+              <h1>Updates with multi and upsert</h1>
+<h2>Update using multi</h2>
+<ul>
+<li>In the example below, the query will find documents where the stock property has a value of less than or equal to 10.</li>
+<li>The update segment changes the value of the &#39;reorder&#39; property to &#39;true&#39;.</li>
+<li>Here we set one option, the multi option, to true. This means that multiple documents will be changed, if they meet the query criteria. You can specify several options by separating them with commas.</li>
+</ul>
+<pre><code>db.books.update(
+   { stock: { $lte: 10 } },
+   { $set: { reorder: true } },
+   { multi: true }
+)</code></pre>
+<h2>Update using upsert</h2>
+<p>The following update sets the upsert option to true so that update() creates a new document in the books collection if no document matches the <query> parameter:</p>
+<pre><code>db.books.update(
+   { item: &quot;ZZZ135&quot; },
+   {
+     item: &quot;ZZZ135&quot;,
+     stock: 5,
+     tags: [ &quot;database&quot; ]
+   },
+   { upsert: true }
+)</code></pre>
+<p>If no document matches the <query> parameter, the update operation inserts a document with only the fields and values of the <update> document and a new unique ObjectId for the <code>_id</code> field:</p>
+<pre><code>{
+  &quot;_id&quot; : ObjectId(&quot;542310906694ce357ad2a1a9&quot;),
+  &quot;item&quot; : &quot;ZZZ135&quot;,
+  &quot;stock&quot; : 5,
+  &quot;tags&quot; : [ &quot;database&quot; ]
+}</code></pre>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="03">
+              <h1>Updating arrays and arrays of documents</h1>
+<h2>Updating arrays using arrayFilters</h2>
+<p>Consider a collection students with the following documents:</p>
+<pre><code>db.students.insert([
+   { &quot;_id&quot; : 1, &quot;grades&quot; : [ 95, 92, 90 ] },
+   { &quot;_id&quot; : 2, &quot;grades&quot; : [ 98, 100, 102 ] },
+   { &quot;_id&quot; : 3, &quot;grades&quot; : [ 95, 110, 100 ] }
+])</code></pre>
+<p>To update all elements that are greater than or equal to 100 in the grades array, use the filtered positional operator $[<identifier>] with the arrayFilters option:</p>
+<pre><code>db.students.update(
+   { grades: { $gte: 100 } },
+   { $set: { &quot;grades.$[element]&quot; : 100 } },
+   {
+     multi: true,
+     arrayFilters: [ { &quot;element&quot;: { $gte: 100 } } ]
+   }
+)</code></pre>
+<p>After the operation, the collection contains the following documents:</p>
+<pre><code>{ &quot;_id&quot; : 1, &quot;grades&quot; : [ 95, 92, 90 ] }
+{ &quot;_id&quot; : 2, &quot;grades&quot; : [ 98, 100, 100 ] }
+{ &quot;_id&quot; : 3, &quot;grades&quot; : [ 95, 100, 100 ] }</code></pre>
+<h2>Updating an array of documents</h2>
+<p>Consider a collection students2 with the following documents:</p>
+<pre><code>{
+   &quot;_id&quot; : 1,
+   &quot;grades&quot; : [
+      { &quot;grade&quot; : 80, &quot;mean&quot; : 75, &quot;std&quot; : 6 },
+      { &quot;grade&quot; : 85, &quot;mean&quot; : 90, &quot;std&quot; : 4 },
+      { &quot;grade&quot; : 85, &quot;mean&quot; : 85, &quot;std&quot; : 6 }
+   ]
+}
+{
+   &quot;_id&quot; : 2,
+   &quot;grades&quot; : [
+      { &quot;grade&quot; : 90, &quot;mean&quot; : 75, &quot;std&quot; : 6 },
+      { &quot;grade&quot; : 87, &quot;mean&quot; : 90, &quot;std&quot; : 3 },
+      { &quot;grade&quot; : 85, &quot;mean&quot; : 85, &quot;std&quot; : 4 }
+   ]
+}</code></pre>
+<p>To modify the value of the mean field for all elements in the grades array where the grade is greater than or equal to 85, use the filtered positional operator $[<identifier>] with the arrayFilters:</p>
+<pre><code>db.students2.update(
+   { },
+   { $set: { &quot;grades.$[elem].mean&quot; : 100 } },
+   {
+     multi: true,
+     arrayFilters: [ { &quot;elem.grade&quot;: { $gte: 85 } } ]
+   }
+)</code></pre>
+<p>After the operation, the collection has the following documents:</p>
+<pre><code>{
+   &quot;_id&quot; : 1,
+   &quot;grades&quot; : [
+      { &quot;grade&quot; : 80, &quot;mean&quot; : 75, &quot;std&quot; : 6 },
+      { &quot;grade&quot; : 85, &quot;mean&quot; : 100, &quot;std&quot; : 4 },
+      { &quot;grade&quot; : 85, &quot;mean&quot; : 100, &quot;std&quot; : 6 }
+   ]
+}
+{
+   &quot;_id&quot; : 2,
+   &quot;grades&quot; : [
+      { &quot;grade&quot; : 90, &quot;mean&quot; : 100, &quot;std&quot; : 6 },
+      { &quot;grade&quot; : 87, &quot;mean&quot; : 100, &quot;std&quot; : 3 },
+      { &quot;grade&quot; : 85, &quot;mean&quot; : 100, &quot;std&quot; : 4 }
+   ]
+}</code></pre>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="Exercises">
+              <h1>Exercises</h1>
+<p>Carry out the following updates on your grades collection.</p>
+<ol>
+<li>Update the document that relates to student 42 and class 18; change the class_id to 19.</li>
+<li>Find the document that contains student 38&#39;s scores for class 23. Set the third element of the scores array to type &quot;homework&quot; with a score of 60.</li>
+<li>Update student 50&#39;s scores for class 2. You will need to set the upsert option. Add the following scores:<ul>
+<li>exam: 57.9</li>
+<li>quiz: 21.2</li>
+<li>homework: 68.1</li>
+</ul>
+</li>
+<li>Find all scores that are greater than or equal to 99 and set them to 100. (Hint: you should use arrayFilters.)</li>
+</ol>
+<h2>Further reading</h2>
+<ul>
+<li><p>Examine the updateOne() and updateMany() methods in the MongoDB reference:</p>
+<ul>
+<li><a href="https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/" target="_ blank">db.collection.updateOne()</a></li>
+<li><a href="https://docs.mongodb.com/manual/reference/method/db.collection.updateMany/" target="_ blank">db.collection.updateMany()</a></li>
+</ul>
+</li>
+<li><p>Use updateOne() to perform an update on a document (change whatever details you wish).</p>
+</li>
+<li>Use updateMany() to update multiple documents (again, make any changes you wish).</li>
+<li>Use find() before and after your updates to confirm that the changes have been made. </li>
+</ul>
+
+            </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass('');
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass('uk-label uk-text-lowercase');
+      divLabel.append($images[i].alt);
+      $(divLabel).insertAfter($images[i]);
+      $('<br>').insertAfter($images[i]);
+    }
+  });
+});
+
+      $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+    </script>
+  </body>
+</html>

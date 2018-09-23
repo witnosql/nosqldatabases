@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+    </style>
+  </head>
+
+  <body>
+    
+    
+
+    <div class="ui fixed top pointing inverted stackable menu labmenu">
+      <header class="header item">
+        <i id="toc" class="sitemap icon"></i>
+        
+          <a href="../index.html">  CRUD  </a>
+        
+      </header>
+      <div class="right tab-menu menu">
+        
+          <a class="item" data-tab="Read (find)">
+            Read (find)
+          </a>
+        
+          <a class="item" data-tab="01">
+            01
+          </a>
+        
+          <a class="item" data-tab="02">
+            02
+          </a>
+        
+          <a class="item" data-tab="03">
+            03
+          </a>
+        
+          <a class="item" data-tab="Exercises">
+            Exercises
+          </a>
+        
+      </div>
+    </div>
+
+    <div class="ui segment pushable">
+      <div class="ui inverted labeled icon left inline vertical sidebar menu">
+        <br><br>
+        
+          
+            <a class="item" href="../../topic-02-crud/book-a-create/index.html">
+              Create
+            </a>
+          
+        
+          
+            <a class="active item" href="../../topic-02-crud/book-b-read/index.html">
+              Read (find)
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic-02-crud/book-c-update/index.html">
+              Update
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic-02-crud/book-d-delete/index.html">
+              Delete
+            </a>
+          
+        
+      </div>
+      <div class="pusher" tabindex="-1">
+        <div class="ui basic segment" id="labchat">
+          <br>
+          
+            <div  class="ui tab segment lab" data-tab="Read (find)">
+              <h1>Read (find)</h1>
+<p>In this lab, we will explore the find() statement in MongoDB, including a range of operators used to filter query results.</p>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="01">
+              <h1>find() queries</h1>
+<h2>Find All Documents in a Collection</h2>
+<p>The find() method with no parameters returns all documents from a collection and returns all fields for the documents. For example, the following operation returns all documents in the bios collection:</p>
+<pre><code>db.bios.find()</code></pre>
+<h2>Query for Equality</h2>
+<p>The following operation returns documents in the bios collection where <code>_id</code> equals 5:</p>
+<pre><code>db.bios.find( { _id: 5 } )</code></pre>
+<h2>Query on Multiple Properties</h2>
+<p>You can specify multiple properties in the find() statement as follows:</p>
+<pre><code>db.grades.find(
+  {class_id: 19,student_id:5}
+).pretty()</code></pre>
+<p>The .pretty() function displays query results in a more readable format.</p>
+<h2>And/Or Operators</h2>
+<p>You can also use the <code>$and</code> or <code>$or</code> operators as follows:</p>
+<pre><code>db.grades.find(
+  {$and: [
+    {class_id: 19},
+    {student_id:5}
+  ]}
+).pretty()</code></pre>
+<p>The query above finds a document where the student id is 5 and the class_id is 19 (just one result). The query below, on the other hand, will return all the documents related to either student 5 or class 19 (so there will be multiple results).</p>
+<pre><code>db.grades.find(
+  {$or: [
+    {class_id: 19},
+    {student_id:5}
+  ]}
+).pretty()</code></pre>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="02">
+              <h1>Find Documents that Match Query Criteria</h1>
+<p>To find documents that match a set of selection criteria, call find() with the <code>&lt;criteria&gt;</code> parameter. The following operation returns all the documents from the collection products where qty is greater than 25:</p>
+<pre><code>db.products.find( { qty: { $gt: 25 } } )</code></pre>
+<p>The following operation returns documents in the bios collection where <code>_id</code> equals either 5 or ObjectId(&quot;507c35dd8fada716c89d0013&quot;):</p>
+<pre><code>db.bios.find(
+   {
+      _id: { $in: [ 5,  ObjectId(&quot;507c35dd8fada716c89d0013&quot;) ] }
+   }
+)</code></pre>
+<h2>Comparison Query Operators</h2>
+<p>Below is a list of all of the comparison query operators available in mongodb. </p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$eq</td>
+<td>Matches values that are equal to a specified value.</td>
+</tr>
+<tr>
+<td>$gt</td>
+<td>Matches values that are greater than a specified value.</td>
+</tr>
+<tr>
+<td>$gte</td>
+<td>Matches values that are greater than or equal to a specified value.</td>
+</tr>
+<tr>
+<td>$in</td>
+<td>Matches any of the values specified in an array.</td>
+</tr>
+<tr>
+<td>$lt</td>
+<td>Matches values that are less than a specified value.</td>
+</tr>
+<tr>
+<td>$lte</td>
+<td>Matches values that are less than or equal to a specified value.</td>
+</tr>
+<tr>
+<td>$ne</td>
+<td>Matches all values that are not equal to a specified value.</td>
+</tr>
+<tr>
+<td>$nin</td>
+<td>Matches none of the values specified in an array.</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="03">
+              <h1>Ranges and Arrays</h1>
+<h2>Query for Ranges</h2>
+<p>Combine comparison operators to specify ranges. The following operation returns documents with field between value1 and value2:</p>
+<pre><code>db.collection.find( { field: { $gt: value1, $lt: value2 } } );</code></pre>
+<h2>Query a Field that Contains an Array</h2>
+<p>If a field contains an array and your query has multiple conditional operators, the field as a whole will match if either a single array element meets the conditions or a combination of array elements meet the conditions.</p>
+<p>Given a collection students that contains the following documents:</p>
+<pre><code>{ &quot;_id&quot; : 1, &quot;score&quot; : [ -1, 3 ] }
+{ &quot;_id&quot; : 2, &quot;score&quot; : [ 1, 5 ] }
+{ &quot;_id&quot; : 3, &quot;score&quot; : [ 5, 5 ] }</code></pre>
+<p>The following query:</p>
+<pre><code>db.students.find( { score: { $gt: 0, $lt: 2 } } )</code></pre>
+<p>Matches the following documents:</p>
+<pre><code>{ &quot;_id&quot; : 1, &quot;score&quot; : [ -1, 3 ] }
+{ &quot;_id&quot; : 2, &quot;score&quot; : [ 1, 5 ] }</code></pre>
+<p>In the document with <code>_id</code> equal to 1, the score: [ -1, 3 ] meets the conditions because the element -1 meets the $lt: 2 condition and the element 3 meets the $gt: 0 condition.</p>
+<p>In the document with <code>_id</code> equal to 2, the score: [ 1, 5 ] meets the conditions because the element 1 meets both the $lt: 2 condition and the $gt: 0 condition.</p>
+<h2>Query for an Array Element</h2>
+<p>The following operation returns documents in the bios collection where the array field contribs contains the element &quot;UNIX&quot;:</p>
+<pre><code>db.bios.find( { contribs: &quot;UNIX&quot; } )</code></pre>
+<h2>Query an Array of Documents</h2>
+<p>The following operation returns documents in the bios collection where awards array contains an embedded document element that contains the award field equal to &quot;Turing Award&quot; and the year field greater than 1980:</p>
+<pre><code>db.bios.find(
+   {
+      awards: {
+                $elemMatch: {
+                     award: &quot;Turing Award&quot;,
+                     year: { $gt: 1980 }
+                }
+      }
+   }
+)</code></pre>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="Exercises">
+              <h1>Exercises</h1>
+<ol>
+<li>Find all documents that relate to student 4 and class 0.</li>
+<li>Find all documents that relate to either student 2 or class 23.</li>
+<li>Use the $in operator to find all documents that relate to student 28 and class 23 or 29.</li>
+<li>Use the $nin operator to find results for student 40, excluding class 1, 2, 14 and 22.</li>
+<li>Use the $eq to find student 5.</li>
+<li>Find all the documents that relate to class 18 where the student number is <strong>not</strong> 30. Use the $ne operator.</li>
+<li>Find scores greater than 99 and less than 100 (hint: you are querying an array of documents).</li>
+<li>Find quiz scores greater than or equal to 35 and less than or equal to 40.</li>
+</ol>
+
+            </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass('');
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass('uk-label uk-text-lowercase');
+      divLabel.append($images[i].alt);
+      $(divLabel).insertAfter($images[i]);
+      $('<br>').insertAfter($images[i]);
+    }
+  });
+});
+
+      $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+    </script>
+  </body>
+</html>

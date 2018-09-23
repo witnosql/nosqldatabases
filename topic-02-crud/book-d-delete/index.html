@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style>
+      
+
+body {
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+  font-size:90%;
+  color: black;
+}
+
+p {
+  margin: 0.5em;
+}
+
+pre code {
+  font-family: "Monaco";
+  font-size: 100%;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin:10px;
+}
+
+h1, h2, h3 {
+  border-bottom:thin solid black;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+h1 {
+  font-style:italic;
+  font-size:130%;
+}
+
+h2 {
+  font-size:110%;
+}
+
+h3 {
+  font-size:100%;
+}
+
+
+
+    </style>
+  </head>
+
+  <body>
+    
+    
+
+    <div class="ui fixed top pointing inverted stackable menu labmenu">
+      <header class="header item">
+        <i id="toc" class="sitemap icon"></i>
+        
+          <a href="../index.html">  CRUD  </a>
+        
+      </header>
+      <div class="right tab-menu menu">
+        
+          <a class="item" data-tab="Delete">
+            Delete
+          </a>
+        
+          <a class="item" data-tab="01">
+            01
+          </a>
+        
+          <a class="item" data-tab="02">
+            02
+          </a>
+        
+          <a class="item" data-tab="Exercises">
+            Exercises
+          </a>
+        
+      </div>
+    </div>
+
+    <div class="ui segment pushable">
+      <div class="ui inverted labeled icon left inline vertical sidebar menu">
+        <br><br>
+        
+          
+            <a class="item" href="../../topic-02-crud/book-a-create/index.html">
+              Create
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic-02-crud/book-b-read/index.html">
+              Read (find)
+            </a>
+          
+        
+          
+            <a class="item" href="../../topic-02-crud/book-c-update/index.html">
+              Update
+            </a>
+          
+        
+          
+            <a class="active item" href="../../topic-02-crud/book-d-delete/index.html">
+              Delete
+            </a>
+          
+        
+      </div>
+      <div class="pusher" tabindex="-1">
+        <div class="ui basic segment" id="labchat">
+          <br>
+          
+            <div  class="ui tab segment lab" data-tab="Delete">
+              <h1>Delete</h1>
+<p>In this lab, we examine the MongoDB methods using for deleting documents from a collection.</p>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="01">
+              <h1>db.collection.remove()</h1>
+<p>Removes documents from a collection. The remove() method can take a query document and an optional justOne boolean:</p>
+<pre><code>db.collection.remove(
+   &lt;query&gt;,
+   &lt;justOne&gt;
+)</code></pre>
+<h2>remove() example</h2>
+<p>The following example removes all documents in a collection. The remove method is called with an empty query document {}. The following operation deletes all documents from the bios collection:</p>
+<pre><code>db.bios.remove( { } )</code></pre>
+<p>This operation is not equivalent to the drop() method.</p>
+<h2>drop() example</h2>
+<p>To remove all documents from a collection, it may be more efficient to use the drop() method to drop the entire collection, including the indexes, and then recreate the collection and rebuild the indexes.</p>
+<p>The following operation drops the students collection in the current database.</p>
+<pre><code>db.students.drop()</code></pre>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="02">
+              <h1>Setting conditions and options</h1>
+<h2>Remove All Documents that Match a Condition</h2>
+<p>To remove the documents that match a deletion criteria, call the remove() method with the <query> parameter. The following operation removes all the documents from the collection products where qty is greater than 20:</p>
+<pre><code>db.products.remove( { qty: { $gt: 20 } } )</code></pre>
+<p>All of the operators covered in the find() section can also be used in the remove query (gt, lt, eq, in, etc.)</p>
+<h2>Remove a Single Document that Matches a Condition</h2>
+<p>To remove the first document that matches a deletion criteria, call the remove method with the query criteria and the justOne parameter set to true or 1.</p>
+<p>The following operation removes <strong>only</strong> the first document from the collection products where qty is greater than 20:</p>
+<pre><code>db.products.remove( { qty: { $gt: 20 } }, true )</code></pre>
+
+            </div>
+          
+            <div  class="ui tab segment lab" data-tab="Exercises">
+              <h1>Exercises</h1>
+<p>Perform the following deletes on your grades collection.</p>
+<ol>
+<li>Remove the document that relates to student 9 and class 15.</li>
+<li>Remove all of the documents belonging to student 19.</li>
+<li>Use a find() query to show all documents with an exam score of less than or equal to 5. Then, use remove() to delete the first of these documents (hint: you need to set the justOne option).</li>
+</ol>
+<h2>Further reading</h2>
+<ul>
+<li><p>Examine the deleteOne() and deleteMany() methods in the MongoDB reference:</p>
+<ul>
+<li><a href="https://docs.mongodb.com/manual/reference/method/db.collection.deleteOne/" target="_ blank">db.collection.deleteOne()</a></li>
+<li><a href="https://docs.mongodb.com/manual/reference/method/db.collection.deleteMany/" target="_ blank">db.collection.deleteMany()</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Use deleteOne() to delete a single document from the grades collection.</li>
+<li>Use deleteMany() to delete multiple documents.</li>
+<li>Use find() after your deletes to confirm that the documents have been removed.</li>
+</ul>
+
+            </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass('');
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass('uk-label uk-text-lowercase');
+      divLabel.append($images[i].alt);
+      $(divLabel).insertAfter($images[i]);
+      $('<br>').insertAfter($images[i]);
+    }
+  });
+});
+
+      $(document).ready(function() {
+  $('img').addClass('ui image');
+
+  $('.ui.embed').embed();
+
+  const $images = $('.lab img');
+  jQuery.each($images, function(i) {
+    if ($images[i].alt.length > 0) {
+      const divImg = $(document.createElement('div')).addClass(
+        'ui basic segment',
+      );
+      $($images[i]).wrap(divImg);
+      const divLabel = $(document.createElement('div')).addClass(
+        'ui blue ribbon label',
+      );
+      divLabel.append($images[i].alt);
+      $(divLabel).insertBefore($images[i]);
+    }
+  });
+
+  $('.ui.menu .item').tab({
+    history: true,
+    historyType: 'hash',
+  });
+
+  $('.popup').popup();
+
+  $('.ui.sidebar')
+    .sidebar({ context: $('.pushable') })
+    .sidebar('setting', 'transition', 'slide out')
+    .sidebar('attach events', '#toc');
+});
+
+    </script>
+  </body>
+</html>
