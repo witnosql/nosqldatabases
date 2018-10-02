@@ -224,9 +224,11 @@ db.collection.deleteMany()</code></pre>
 </ul>
 <p><img src="img/afterimport.png" alt=""></p>
 <ul>
-<li>Run a find() statement to see a subset of the data we have imported.</li>
+<li>Run a find() statement to see a subset of the data we have imported. Don&#39;t forget to run the &#39;use grades&#39; command first to switch to the grades database.</li>
 </ul>
-<pre><code>db.grades.find({class_id:2}).pretty()</code></pre>
+<pre><code>use grades
+
+db.grades.find({class_id:2}).pretty()</code></pre>
 <ul>
 <li>Your output should look something like this:</li>
 </ul>
@@ -296,6 +298,21 @@ db.collection.deleteMany()</code></pre>
 </ul>
 </li>
 </ul>
+<ul>
+<li>When creating the document, take care to match the structure of the existing documents in the database. This is important later when you are querying the documents; we want them all to have the same properties so that our queries will work on all documents.</li>
+</ul>
+<pre><code>{
+  &quot;_id&quot; : { &quot;$oid&quot; : &quot;50b59cd75bed76f46522c34e&quot; },
+  &quot;student_id&quot; : 0,
+  &quot;class_id&quot; : 2,
+  &quot;scores&quot; : [
+    { &quot;type&quot; : &quot;exam&quot;, &quot;score&quot; : 57.92947112575566 },
+    { &quot;type&quot; : &quot;quiz&quot;, &quot;score&quot; : 21.24542588206755 },
+    { &quot;type&quot; : &quot;homework&quot;, &quot;score&quot; : 68.19567810587429 },
+    { &quot;type&quot; : &quot;homework&quot;, &quot;score&quot; : 67.95019716560351 },
+    { &quot;type&quot; : &quot;homework&quot;, &quot;score&quot; : 18.81037253352722 }
+  ]
+}</code></pre>
 <ul>
 <li><p>Run a find query to view the document you created ( <code>db.grades.find({student_id:50}).pretty()</code> )</p>
 </li>
