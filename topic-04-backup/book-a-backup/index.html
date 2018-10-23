@@ -68,13 +68,13 @@ h3 {
       <header class="header item">
         <i id="toc" class="sitemap icon"></i>
         
-          <a href="../index.html">  CRUD  </a>
+          <a href="../index.html">  Backup  </a>
         
       </header>
       <div class="right tab-menu menu">
         
-          <a class="item" data-tab="Delete">
-            Delete
+          <a class="item" data-tab="Backup">
+            Backup
           </a>
         
           <a class="item" data-tab="01">
@@ -115,13 +115,13 @@ h3 {
           
         
           
-            <a class="active item" href="../../topic-02-crud/book-d-delete/index.html">
+            <a class="item" href="../../topic-02-crud/book-d-delete/index.html">
               Delete
             </a>
           
         
           
-            <a class="item" href="../../topic-04-backup/book-a-backup/index.html">
+            <a class="active item" href="../../topic-04-backup/book-a-backup/index.html">
               Backup
             </a>
           
@@ -131,65 +131,57 @@ h3 {
         <div class="ui basic segment" id="labchat">
           <br>
           
-            <div  class="ui tab segment lab" data-tab="Delete">
-              <h1>Delete</h1>
-<p>In this lab, we examine the MongoDB methods using for deleting documents from a collection.</p>
+            <div  class="ui tab segment lab" data-tab="Backup">
+              <h1>Objectives</h1>
+<p>This lab examines the functions used to backup and restore data in MongoDB.</p>
 
             </div>
           
             <div  class="ui tab segment lab" data-tab="01">
-              <h1>db.collection.remove()</h1>
-<p>Removes documents from a collection. The remove() method can take a query document and an optional justOne boolean:</p>
-<pre><code>db.collection.remove(
-   &lt;query&gt;,
-   &lt;justOne&gt;
-)</code></pre>
-<h2>remove() example</h2>
-<p>The following example removes all documents in a collection. The remove method is called with an empty query document {}. The following operation deletes all documents from the bios collection:</p>
-<pre><code>db.bios.remove( { } )</code></pre>
-<p>This operation is not equivalent to the drop() method.</p>
-<h2>drop() example</h2>
-<p>To remove all documents from a collection, it may be more efficient to use the drop() method to drop the entire collection, including the indexes, and then recreate the collection and rebuild the indexes.</p>
-<p>The following operation drops the students collection in the current database.</p>
-<pre><code>db.students.drop()</code></pre>
+              <h1>Back up a MongoDB database using mongodump</h1>
+<h2>mongodump</h2>
+<p>The mongodump function is used to create a backup of a whole database (or a single collection). The mongodump command should be run in the <strong>system command prompt</strong>, not in the mongodb shell.</p>
+<p>The command shown here will create a backup of the grades database.</p>
+<pre><code>mongodump --db grades</code></pre>
+<p>To create a backup of a single collection in a database, you would use the following command:</p>
+<pre><code>mongodump --db college --collection students</code></pre>
+<p>The mongodump function outputs a folder containing a BSON (binary JSON) file and a metadata file. You may need to specify an output folder for the function, especially on the college computers where you don&#39;t have write access for the C: drive. Use this syntax to specify an output folder:</p>
+<pre><code>mongodump --db grades --out G:\dump</code></pre>
+<p>You should see the following output after a successful dump operation:</p>
+<p><img src="img/01.png" alt=""></p>
+<p>Confirm that the files have been created in the folder you specified.</p>
+<p><img src="img/02.png" alt=""></p>
 
             </div>
           
             <div  class="ui tab segment lab" data-tab="02">
-              <h1>Setting conditions and options</h1>
-<h2>Remove All Documents that Match a Condition</h2>
-<p>To remove the documents that match a deletion criteria, call the remove() method with the <query> parameter. The following operation removes all the documents from the collection products where qty is greater than 20:</p>
-<pre><code>db.products.remove( { qty: { $gt: 20 } } )</code></pre>
-<p>All of the operators covered in the find() section can also be used in the remove query (gt, lt, eq, in, etc.)</p>
-<h2>Remove a Single Document that Matches a Condition</h2>
-<p>To remove the first document that matches a deletion criteria, call the remove method with the query criteria and the justOne parameter set to true or 1.</p>
-<p>The following operation removes <strong>only</strong> the first document from the collection products where qty is greater than 20:</p>
-<pre><code>db.products.remove( { qty: { $gt: 20 } }, true )</code></pre>
+              <h1>Using mongorestore to restore a MongoDB database</h1>
+<p>We will now restore the backup we created to confirm that it was successful. First, we need to drop the grades database.</p>
+<h2>Drop the grades database</h2>
+<p>Execute the following commands from the mongo.exe client (one at a time)</p>
+<pre><code>show dbs
+use grades
+db.dropDatabase()
+show dbs</code></pre>
+<p>You should see the following output:</p>
+<p><img src="img/03.png" alt=""></p>
+<h2>Restore the grades database</h2>
+<p>Run this command from the <strong>system command prompt</strong>:</p>
+<pre><code>mongorestore --db grades G:\dump\grades</code></pre>
+<p>Note that the location should match the location of your mongodump output folder.</p>
+<p>You should see the following output:</p>
+<p><img src="img/04.png" alt=""></p>
+<p>Back in the mongo.exe client, run the show dbs command again. You should see the following output, confirming that the grades database has been restored. Run a find() operation to confirm that the data can be read.  </p>
+<p><img src="img/05.png" alt=""></p>
 
             </div>
           
             <div  class="ui tab segment lab" data-tab="Exercises">
               <h1>Exercises</h1>
-<p>Perform the following deletes on your grades collection.</p>
 <ol>
-<li>Remove the document that relates to student 9 and class 15.</li>
-<li>Remove all of the documents belonging to student 19.</li>
-<li>Use a find() query to show all documents with an exam score of less than or equal to 5. Then, use remove() to delete the first of these documents (hint: you need to set the justOne option).</li>
+<li>Examine the <a href="https://docs.mongodb.com/manual/reference/program/mongoexport/" target="_ blank">mongoexport</a> function, which can be used to export a single collection as a JSON file.</li>
+<li>Examine <a href="https://docs.mongodb.com/manual/reference/program/mongoimport/" target="_ blank">mongoimport</a>, which imports data from a JSON file. </li>
 </ol>
-<h2>Further reading</h2>
-<ul>
-<li><p>Examine the deleteOne() and deleteMany() methods in the MongoDB reference:</p>
-<ul>
-<li><a href="https://docs.mongodb.com/manual/reference/method/db.collection.deleteOne/" target="_ blank">db.collection.deleteOne()</a></li>
-<li><a href="https://docs.mongodb.com/manual/reference/method/db.collection.deleteMany/" target="_ blank">db.collection.deleteMany()</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Use deleteOne() to delete a single document from the grades collection.</li>
-<li>Use deleteMany() to delete multiple documents.</li>
-<li>Use find() after your deletes to confirm that the documents have been removed.</li>
-</ul>
 
             </div>
           
