@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <style>
       
@@ -57,92 +66,121 @@ h3 {
 
 
 
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
     </style>
   </head>
 
-  <body>
-    
-    
+  
+  
 
-    <div class="ui fixed top pointing inverted stackable menu labmenu">
-      <header class="header item">
-        <i id="toc" class="sitemap icon"></i>
-        
-          <a href="../index.html">  CRUD  </a>
-        
-      </header>
-      <div class="right tab-menu menu">
-        
-          <a class="item" data-tab="Update">
-            Update
-          </a>
-        
-          <a class="item" data-tab="01">
-            01
-          </a>
-        
-          <a class="item" data-tab="02">
-            02
-          </a>
-        
-          <a class="item" data-tab="03">
-            03
-          </a>
-        
-          <a class="item" data-tab="Exercises">
-            Exercises
-          </a>
-        
-      </div>
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  CRUD  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Update">
+          Update
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="Exercises">
+          Exercises
+        </a>
+      
     </div>
+  </div>
 
-    <div class="ui segment pushable">
-      <div class="ui inverted labeled icon left inline vertical sidebar menu">
-        <br><br>
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
         
           
-            <a class="item" href="../../topic-02-crud/book-a-create/index.html">
-              Create
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-a-create/index.html">Create </a>
           
         
-          
-            <a class="item" href="../../topic-02-crud/book-b-read/index.html">
-              Read (find)
-            </a>
-          
+      
         
           
-            <a class="active item" href="../../topic-02-crud/book-c-update/index.html">
-              Update
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-b-read/index.html">Read (find) </a>
           
         
-          
-            <a class="item" href="../../topic-02-crud/book-d-delete/index.html">
-              Delete
-            </a>
-          
+      
         
           
-            <a class="item" href="../../topic-04-backup/book-a-backup/index.html">
-              Backup
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-c-update/index.html">Update </a>
           
         
-      </div>
-      <div class="pusher" tabindex="-1">
-        <div class="ui basic segment" id="labchat">
-          <br>
+      
+        
           
-            <div  class="ui tab segment lab" data-tab="Update">
-              <h1>Update</h1>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-d-delete/index.html">Delete </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-04-backup/book-a-backup/index.html">Backup </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Update">
+            <h1>Update</h1>
 <p>This lab examines the methods used for updating documents in MongoDB.</p>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="01">
-              <h1>db.collection.update()</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h1>db.collection.update()</h1>
 <p>Modifies an existing document or documents in a collection. The method can modify specific fields of an existing document or documents or replace an existing document entirely, depending on the update parameter. By default, the update() method updates a single document. Set the Multi Parameter to update all documents that match the query criteria.</p>
 <pre><code>db.collection.update(query, update, options)</code></pre>
 <p>The update() method has the following form:</p>
@@ -201,10 +239,10 @@ h3 {
    }
 )</code></pre>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="02">
-              <h1>Updates with multi and upsert</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h1>Updates with multi and upsert</h1>
 <h2>Update using multi</h2>
 <ul>
 <li>In the example below, the query will find documents where the stock property has a value of less than or equal to 10.</li>
@@ -235,10 +273,10 @@ h3 {
   &quot;tags&quot; : [ &quot;database&quot; ]
 }</code></pre>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="03">
-              <h1>Updating arrays and arrays of documents</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h1>Updating arrays and arrays of documents</h1>
 <h2>Updating arrays using arrayFilters</h2>
 <p>Consider a collection students with the following documents:</p>
 <pre><code>db.students.insert([
@@ -304,10 +342,10 @@ h3 {
    ]
 }</code></pre>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="Exercises">
-              <h1>Exercises</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Exercises">
+            <h1>Exercises</h1>
 <p>Carry out the following updates on your grades collection.</p>
 <ol>
 <li>Update the document that relates to student 42 and class 18; change the class_id to 19.</li>
@@ -334,28 +372,36 @@ h3 {
 <li>Use find() before and after your updates to confirm that the changes have been made. </li>
 </ul>
 
-            </div>
-          
-        </div>
+          </div>
+        
       </div>
     </div>
+  </div>
 
-    <script>
-      $(document).ready(function() {
-  const $images = $('.lab img');
-  jQuery.each($images, function(i) {
-    if ($images[i].alt.length > 0) {
-      const divImg = $(document.createElement('div')).addClass('');
-      $($images[i]).wrap(divImg);
-      const divLabel = $(document.createElement('div')).addClass('uk-label uk-text-lowercase');
-      divLabel.append($images[i].alt);
-      $(divLabel).insertAfter($images[i]);
-      $('<br>').insertAfter($images[i]);
-    }
-  });
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
 });
 
-      $(document).ready(function() {
+    $(document).ready(function() {
   $('img').addClass('ui image');
 
   $('.ui.embed').embed();
@@ -388,6 +434,18 @@ h3 {
     .sidebar('attach events', '#toc');
 });
 
-    </script>
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> 
+      </div>
+    </div>
+  </div>
+
   </body>
+
 </html>

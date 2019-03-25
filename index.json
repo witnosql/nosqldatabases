@@ -1,0 +1,168 @@
+
+
+
+  {
+  
+  
+    "properties" : {"highlightstyle":"railscasts","moodle":"https://moodle.wit.ie/course/view.php?id=126408&section=2","courseurl":"https://witnosql.github.io/nosqldatabases/","credits":"Dr. Rosanne Birney, Dr. T.J. McDonald, WIT"},
+  
+  "type" : "course",
+  "title" : " NoSQL Databases ",
+  "img" : "course.png",
+  "videoid" : "",
+  "objectives" : "<p>Lab work for the NoSQL Databases module</p>",
+  "folder" : "nosql-databases",
+  "link" : "index.html",
+  "los": [
+   ]
+,
+  "topics" : [  {
+    
+    
+  
+    "properties" : {},
+  
+  "type" : "topic",
+  "title" : " CRUD ",
+  "img" : "topic.png",
+  "videoid" : "",
+  "objectives" : "<p>In this lab, we will explore the syntax of the MongoDB CRUD (Create, Read, Update, Delete) functionality.</p>",
+  "folder" : "topic-02-crud",
+  "link" : "index.html",
+  "los": [
+   {
+    
+  
+    "properties" : {},
+  
+  "type" : "lab",
+  "title" : "Create",
+  "img" : "img/main.png",
+  "videoid" : "none",
+  "objectives" : "<p>This lab introduces the CREATE functions in MongoDB.</p>",
+  "folder" : "book-a-create",
+  "link" : "index.html",
+  "los": [
+   ]
+
+    } ,
+   {
+    
+  
+    "properties" : {},
+  
+  "type" : "lab",
+  "title" : "Read (find)",
+  "img" : "img/main.png",
+  "videoid" : "none",
+  "objectives" : "<p>In this lab, we will explore the find() statement in MongoDB, including a range of operators used to filter query results.</p>",
+  "folder" : "book-b-read",
+  "link" : "index.html",
+  "los": [
+   ]
+
+    } ,
+   {
+    
+  
+    "properties" : {},
+  
+  "type" : "lab",
+  "title" : "Update",
+  "img" : "img/main.png",
+  "videoid" : "none",
+  "objectives" : "<p>This lab examines the methods used for updating documents in MongoDB.</p>",
+  "folder" : "book-c-update",
+  "link" : "index.html",
+  "los": [
+   ]
+
+    } ,
+   {
+    
+  
+    "properties" : {},
+  
+  "type" : "lab",
+  "title" : "Delete",
+  "img" : "img/main.png",
+  "videoid" : "none",
+  "objectives" : "<p>In this lab, we examine the MongoDB methods using for deleting documents from a collection.</p>",
+  "folder" : "book-d-delete",
+  "link" : "index.html",
+  "los": [
+   ]
+
+    } 
+   ]
+
+  },
+ {
+    
+    
+  
+    "properties" : {},
+  
+  "type" : "topic",
+  "title" : " DOM ",
+  "img" : "topic.png",
+  "videoid" : "",
+  "objectives" : "<p>In this topic, we will examine Document-Oriented Modelling (DOM).</p>",
+  "folder" : "topic-03-dom",
+  "link" : "index.html",
+  "los": [
+   {
+    
+  
+    "properties" : {},
+  
+  "type" : "talk",
+  "title" : " Document-Oriented Modelling ",
+  "img" : "talk-1.png",
+  "videoid" : "none",
+  "objectives" : "<p>These slides introduce the concept of document-oriented modelling.</p>",
+  "folder" : "talk-1",
+  "link" : "talk-1.pdf",
+  "los": [
+   ]
+
+    } 
+   ]
+
+  },
+ {
+    
+    
+  
+    "properties" : {},
+  
+  "type" : "topic",
+  "title" : " Backup ",
+  "img" : "topic.png",
+  "videoid" : "",
+  "objectives" : "<p>This lab will cover the MongoDB functions used to backup and restore data.</p>",
+  "folder" : "topic-04-backup",
+  "link" : "index.html",
+  "los": [
+   {
+    
+  
+    "properties" : {},
+  
+  "type" : "lab",
+  "title" : "Backup",
+  "img" : "img/main.png",
+  "videoid" : "none",
+  "objectives" : "<p>This lab examines the functions used to backup and restore data in MongoDB.</p>",
+  "folder" : "book-a-backup",
+  "link" : "index.html",
+  "los": [
+   ]
+
+    } 
+   ]
+
+  }
+ ]
+  }
+

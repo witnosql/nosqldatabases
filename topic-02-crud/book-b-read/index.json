@@ -1,0 +1,53 @@
+
+
+
+  {
+  
+  
+    "properties" : {},
+  
+  "type" : "lab",
+  "title" : "Read (find)",
+  "img" : "img/main.png",
+  "videoid" : "none",
+  "objectives" : "<p>In this lab, we will explore the find() statement in MongoDB, including a range of operators used to filter query results.</p>",
+  "folder" : "book-b-read",
+  "link" : "index.html",
+  "los": [
+   ]
+,
+  "chapters" : [
+  
+    {
+    "title": "# Read (find)",
+    "shortTitle": "Read (find)",
+    "contentMd" : "# Read (find)\r\n\r\nIn this lab, we will explore the find() statement in MongoDB, including a range of operators used to filter query results.\r\n"
+    },
+  
+    {
+    "title": "# find() queries",
+    "shortTitle": "01",
+    "contentMd" : "# find() queries\r\n\r\n## Find All Documents in a Collection\r\n\r\nThe find() method with no parameters returns all documents from a collection and returns all fields for the documents. For example, the following operation returns all documents in the bios collection:\r\n\r\n~~~\r\ndb.bios.find()\r\n~~~\r\n\r\n\r\n## Query for Equality\r\n\r\nThe following operation returns documents in the bios collection where `_id` equals 5:\r\n\r\n~~~\r\ndb.bios.find( { _id: 5 } )\r\n~~~\r\n\r\n## Query on Multiple Properties\r\n\r\nYou can specify multiple properties in the find() statement as follows:\r\n\r\n~~~\r\ndb.grades.find(\r\n  {class_id: 19,student_id:5}\r\n).pretty()\r\n~~~\r\n\r\nThe .pretty() function displays query results in a more readable format.\r\n\r\n## And/Or Operators\r\n\r\nYou can also use the `$and` or `$or` operators as follows:\r\n\r\n~~~\r\ndb.grades.find(\r\n  {$and: [\r\n    {class_id: 19},\r\n    {student_id:5}\r\n  ]}\r\n).pretty()\r\n~~~\r\n\r\nThe query above finds a document where the student id is 5 and the class_id is 19 (just one result). The query below, on the other hand, will return all the documents related to either student 5 or class 19 (so there will be multiple results).\r\n\r\n~~~\r\ndb.grades.find(\r\n  {$or: [\r\n    {class_id: 19},\r\n    {student_id:5}\r\n  ]}\r\n).pretty()\r\n~~~\r\n"
+    },
+  
+    {
+    "title": "# Find Documents that Match Query Criteria",
+    "shortTitle": "02",
+    "contentMd" : "# Find Documents that Match Query Criteria\r\n\r\nTo find documents that match a set of selection criteria, call find() with the `<criteria>` parameter. The following operation returns all the documents from the collection products where qty is greater than 25:\r\n\r\n~~~\r\ndb.products.find( { qty: { $gt: 25 } } )\r\n~~~\r\n\r\nThe following operation returns documents in the bios collection where `_id` equals either 5 or ObjectId(\"507c35dd8fada716c89d0013\"):\r\n\r\n~~~\r\ndb.bios.find(\r\n   {\r\n      _id: { $in: [ 5,  ObjectId(\"507c35dd8fada716c89d0013\") ] }\r\n   }\r\n)\r\n~~~\r\n\r\n## Comparison Query Operators\r\n\r\nBelow is a list of all of the comparison query operators available in mongodb. \r\n\r\nName\t| Description\r\n------ | ------\r\n$eq | Matches values that are equal to a specified value.\r\n$gt | Matches values that are greater than a specified value.\r\n$gte | Matches values that are greater than or equal to a specified value.\r\n$in | Matches any of the values specified in an array.\r\n$lt | Matches values that are less than a specified value.\r\n$lte | Matches values that are less than or equal to a specified value.\r\n$ne | Matches all values that are not equal to a specified value.\r\n$nin | Matches none of the values specified in an array.\r\n"
+    },
+  
+    {
+    "title": "# Ranges and Arrays",
+    "shortTitle": "03",
+    "contentMd" : "# Ranges and Arrays\r\n\r\n## Query for Ranges\r\n\r\nCombine comparison operators to specify ranges. The following operation returns documents with field between value1 and value2:\r\n\r\n~~~\r\ndb.collection.find( { field: { $gt: value1, $lt: value2 } } );\r\n~~~\r\n\r\n\r\n## Query a Field that Contains an Array\r\n\r\nIf a field contains an array and your query has multiple conditional operators, the field as a whole will match if either a single array element meets the conditions or a combination of array elements meet the conditions.\r\n\r\nGiven a collection students that contains the following documents:\r\n\r\n~~~\r\n{ \"_id\" : 1, \"score\" : [ -1, 3 ] }\r\n{ \"_id\" : 2, \"score\" : [ 1, 5 ] }\r\n{ \"_id\" : 3, \"score\" : [ 5, 5 ] }\r\n~~~\r\n\r\nThe following query:\r\n\r\n~~~\r\ndb.students.find( { score: { $gt: 0, $lt: 2 } } )\r\n~~~\r\n\r\nMatches the following documents:\r\n\r\n~~~\r\n{ \"_id\" : 1, \"score\" : [ -1, 3 ] }\r\n{ \"_id\" : 2, \"score\" : [ 1, 5 ] }\r\n~~~\r\n\r\nIn the document with `_id` equal to 1, the score: [ -1, 3 ] meets the conditions because the element -1 meets the $lt: 2 condition and the element 3 meets the $gt: 0 condition.\r\n\r\nIn the document with `_id` equal to 2, the score: [ 1, 5 ] meets the conditions because the element 1 meets both the $lt: 2 condition and the $gt: 0 condition.\r\n\r\n\r\n## Query for an Array Element\r\n\r\nThe following operation returns documents in the bios collection where the array field contribs contains the element \"UNIX\":\r\n\r\n~~~\r\ndb.bios.find( { contribs: \"UNIX\" } )\r\n~~~\r\n\r\n\r\n## Query an Array of Documents\r\n\r\nThe following operation returns documents in the bios collection where awards array contains an embedded document element that contains the award field equal to \"Turing Award\" and the year field greater than 1980:\r\n\r\n~~~\r\ndb.bios.find(\r\n   {\r\n      awards: {\r\n                $elemMatch: {\r\n                     award: \"Turing Award\",\r\n                     year: { $gt: 1980 }\r\n                }\r\n      }\r\n   }\r\n)\r\n~~~\r\n"
+    },
+  
+    {
+    "title": "# Exercises",
+    "shortTitle": "Exercises",
+    "contentMd" : "# Exercises\r\n\r\n1. Find all documents that relate to student 4 and class 0.\r\n2. Find all documents that relate to either student 2 or class 23.\r\n3. Use the $in operator to find all documents that relate to student 28 and class 23 or 29.\r\n4. Use the $nin operator to find results for student 40, excluding class 1, 2, 14 and 22.\r\n5. Use the $eq to find student 5.\r\n6. Find all the documents that relate to class 18 where the student number is **not** 30. Use the $ne operator.\r\n7. Find scores greater than 99 and less than 100 (hint: you are querying an array of documents).\r\n8. Find quiz scores greater than or equal to 35 and less than or equal to 40.\r\n"
+    }
+  
+  ]
+  }
+

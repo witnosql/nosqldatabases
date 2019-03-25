@@ -4,13 +4,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/css/uikit.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.10/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.23/css/uikit.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.23/js/uikit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.23/js/uikit-icons.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
+    </style>
   </head>
   <body class="uk-background-muted">
-    
+    <div class="wrapper">
+      <div class="content">
+        <div style="height:1000px;">
+          
   
   <div class="uk-offcanvas-content">
     <div id="offcanvas-usage" uk-offcanvas>
@@ -181,11 +209,24 @@ Backup
 
     
   <div class="uk-width-1-2@m  uk-card uk-card-default uk-padding-small">
-    <h2>  CRUD  </h2>
-    <div class="uk-text-muted uk-text-small">
-      
-        Dr. Rosanne Birney, Dr. T.J. McDonald, WIT
-      
+    <div uk-grid>
+      <div class="uk-width-1-5@m">
+        
+          
+  
+    <i class=" fa-4x" style="color:"></i>
+  
+
+        
+      </div>
+      <div class="uk-width-expand@m uk-text-left">
+        <h2>  CRUD  </h2>
+        <div class="uk-text-muted uk-text-small">
+          
+            Dr. Rosanne Birney, Dr. T.J. McDonald, WIT
+          
+        </div>
+      </div>
     </div>
   </div>
 
@@ -204,25 +245,29 @@ Backup
 
     
   
-    <div class="uk-card uk-card-default uk-padding-small">
-      <ul class="uk-iconnav">
-        
-        
+    
+      <div class="uk-card uk-card-default uk-padding-small">
+        <ul class="uk-iconnav">
           
+          
+            
   <li>
     <a href="https://moodle.wit.ie/course/view.php?id=126408&section=2" title="To Moodle ..." pos="bottom" uk-tooltip> 
   <i class="fas fa-graduation-cap fa-2x" style="color:#f87f2a"> </i>
  </a>
   </li>
 
-        
-        
-        
-      </ul>
-    </div>
+          
+          
+          
+        </ul>
+      </div>
+    
   
 
     
+      
+
   
     <div class="uk-card uk-card-default uk-padding-small">
       <ul class="uk-iconnav">
@@ -266,10 +311,17 @@ Backup
     </div>
   
 
+    
+    
+  
+
   </div>
 
   
   <div class="uk-container uk-padding-small">
+    
+  
+
     
   
 
@@ -283,6 +335,10 @@ Backup
         <div>
           
             
+
+  
+  
+
   <div class="uk-card uk-card-default 
   
     uk-card-hover
@@ -330,8 +386,7 @@ Backup
     
   
     <div class="uk-card-footer">
-      <p> <p>This lab introduces the CREATE functions in MongoDB.</p>
-</p>
+      <p> <p>This lab introduces the CREATE functions in MongoDB.</p></p>
     </div>
   
 
@@ -340,12 +395,18 @@ Backup
 
   </div>
 
+
+
           
         </div>
       
         <div>
           
             
+
+  
+  
+
   <div class="uk-card uk-card-default 
   
     uk-card-hover
@@ -393,8 +454,7 @@ Backup
     
   
     <div class="uk-card-footer">
-      <p> <p>In this lab, we will explore the find() statement in MongoDB, including a range of operators used to filter query results.</p>
-</p>
+      <p> <p>In this lab, we will explore the find() statement in MongoDB, including a range of operators used to filter query results.</p></p>
     </div>
   
 
@@ -403,12 +463,18 @@ Backup
 
   </div>
 
+
+
           
         </div>
       
         <div>
           
             
+
+  
+  
+
   <div class="uk-card uk-card-default 
   
     uk-card-hover
@@ -456,8 +522,7 @@ Backup
     
   
     <div class="uk-card-footer">
-      <p> <p>This lab examines the methods used for updating documents in MongoDB.</p>
-</p>
+      <p> <p>This lab examines the methods used for updating documents in MongoDB.</p></p>
     </div>
   
 
@@ -466,12 +531,18 @@ Backup
 
   </div>
 
+
+
           
         </div>
       
         <div>
           
             
+
+  
+  
+
   <div class="uk-card uk-card-default 
   
     uk-card-hover
@@ -519,8 +590,7 @@ Backup
     
   
     <div class="uk-card-footer">
-      <p> <p>In this lab, we examine the MongoDB methods using for deleting documents from a collection.</p>
-</p>
+      <p> <p>In this lab, we examine the MongoDB methods using for deleting documents from a collection.</p></p>
     </div>
   
 
@@ -528,6 +598,8 @@ Backup
   
 
   </div>
+
+
 
           
         </div>
@@ -539,5 +611,12 @@ Backup
   </div>
 
 
+        </div>
+      </div>
+      <div class="footer uk-text-small uk-text-right uk-text-muted"> Powered by <a
+          href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a>
+        
+      </div>
+    </div>
   </body>
 </html>

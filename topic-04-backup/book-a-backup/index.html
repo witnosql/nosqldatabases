@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <style>
       
@@ -57,88 +66,117 @@ h3 {
 
 
 
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
     </style>
   </head>
 
-  <body>
-    
-    
+  
+  
 
-    <div class="ui fixed top pointing inverted stackable menu labmenu">
-      <header class="header item">
-        <i id="toc" class="sitemap icon"></i>
-        
-          <a href="../index.html">  Backup  </a>
-        
-      </header>
-      <div class="right tab-menu menu">
-        
-          <a class="item" data-tab="Backup">
-            Backup
-          </a>
-        
-          <a class="item" data-tab="01">
-            01
-          </a>
-        
-          <a class="item" data-tab="02">
-            02
-          </a>
-        
-          <a class="item" data-tab="Exercises">
-            Exercises
-          </a>
-        
-      </div>
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  Backup  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Backup">
+          Backup
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="Exercises">
+          Exercises
+        </a>
+      
     </div>
+  </div>
 
-    <div class="ui segment pushable">
-      <div class="ui inverted labeled icon left inline vertical sidebar menu">
-        <br><br>
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
         
           
-            <a class="item" href="../../topic-02-crud/book-a-create/index.html">
-              Create
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-a-create/index.html">Create </a>
           
         
-          
-            <a class="item" href="../../topic-02-crud/book-b-read/index.html">
-              Read (find)
-            </a>
-          
+      
         
           
-            <a class="item" href="../../topic-02-crud/book-c-update/index.html">
-              Update
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-b-read/index.html">Read (find) </a>
           
         
-          
-            <a class="item" href="../../topic-02-crud/book-d-delete/index.html">
-              Delete
-            </a>
-          
+      
         
           
-            <a class="active item" href="../../topic-04-backup/book-a-backup/index.html">
-              Backup
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-c-update/index.html">Update </a>
           
         
-      </div>
-      <div class="pusher" tabindex="-1">
-        <div class="ui basic segment" id="labchat">
-          <br>
+      
+        
           
-            <div  class="ui tab segment lab" data-tab="Backup">
-              <h1>Objectives</h1>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-d-delete/index.html">Delete </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-04-backup/book-a-backup/index.html">Backup </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Backup">
+            <h1>Objectives</h1>
 <p>This lab examines the functions used to backup and restore data in MongoDB.</p>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="01">
-              <h1>Back up a MongoDB database using mongodump</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h1>Back up a MongoDB database using mongodump</h1>
 <h2>mongodump</h2>
 <p>The mongodump function is used to create a backup of a whole database (or a single collection). The mongodump command should be run in the <strong>system command prompt</strong>, not in the mongodb shell.</p>
 <p>The command shown here will create a backup of the grades database.</p>
@@ -152,10 +190,10 @@ h3 {
 <p>Confirm that the files have been created in the folder you specified.</p>
 <p><img src="img/02.png" alt=""></p>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="02">
-              <h1>Using mongorestore to restore a MongoDB database</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h1>Using mongorestore to restore a MongoDB database</h1>
 <p>We will now restore the backup we created to confirm that it was successful. First, we need to drop the grades database.</p>
 <h2>Drop the grades database</h2>
 <p>Execute the following commands from the mongo.exe client (one at a time)</p>
@@ -164,7 +202,7 @@ use grades
 db.dropDatabase()
 show dbs</code></pre>
 <p>You should see the following output:</p>
-<p><img src="img/03.png" alt=""></p>
+<p><img src="img/05.png" alt=""></p>
 <h2>Restore the grades database</h2>
 <p>Run this command from the <strong>system command prompt</strong>:</p>
 <pre><code>mongorestore --db grades G:\dump\grades</code></pre>
@@ -174,37 +212,45 @@ show dbs</code></pre>
 <p>Back in the mongo.exe client, run the show dbs command again. You should see the following output, confirming that the grades database has been restored. Run a find() operation to confirm that the data can be read.  </p>
 <p><img src="img/05.png" alt=""></p>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="Exercises">
-              <h1>Exercises</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Exercises">
+            <h1>Exercises</h1>
 <ol>
 <li>Examine the <a href="https://docs.mongodb.com/manual/reference/program/mongoexport/" target="_ blank">mongoexport</a> function, which can be used to export a single collection as a JSON file.</li>
 <li>Examine <a href="https://docs.mongodb.com/manual/reference/program/mongoimport/" target="_ blank">mongoimport</a>, which imports data from a JSON file. </li>
 </ol>
 
-            </div>
-          
-        </div>
+          </div>
+        
       </div>
     </div>
+  </div>
 
-    <script>
-      $(document).ready(function() {
-  const $images = $('.lab img');
-  jQuery.each($images, function(i) {
-    if ($images[i].alt.length > 0) {
-      const divImg = $(document.createElement('div')).addClass('');
-      $($images[i]).wrap(divImg);
-      const divLabel = $(document.createElement('div')).addClass('uk-label uk-text-lowercase');
-      divLabel.append($images[i].alt);
-      $(divLabel).insertAfter($images[i]);
-      $('<br>').insertAfter($images[i]);
-    }
-  });
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
 });
 
-      $(document).ready(function() {
+    $(document).ready(function() {
   $('img').addClass('ui image');
 
   $('.ui.embed').embed();
@@ -237,6 +283,18 @@ show dbs</code></pre>
     .sidebar('attach events', '#toc');
 });
 
-    </script>
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> 
+      </div>
+    </div>
+  </div>
+
   </body>
+
 </html>

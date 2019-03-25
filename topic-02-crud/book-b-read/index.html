@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <style>
       
@@ -57,92 +66,121 @@ h3 {
 
 
 
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
     </style>
   </head>
 
-  <body>
-    
-    
+  
+  
 
-    <div class="ui fixed top pointing inverted stackable menu labmenu">
-      <header class="header item">
-        <i id="toc" class="sitemap icon"></i>
-        
-          <a href="../index.html">  CRUD  </a>
-        
-      </header>
-      <div class="right tab-menu menu">
-        
-          <a class="item" data-tab="Read (find)">
-            Read (find)
-          </a>
-        
-          <a class="item" data-tab="01">
-            01
-          </a>
-        
-          <a class="item" data-tab="02">
-            02
-          </a>
-        
-          <a class="item" data-tab="03">
-            03
-          </a>
-        
-          <a class="item" data-tab="Exercises">
-            Exercises
-          </a>
-        
-      </div>
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  CRUD  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Read (find)">
+          Read (find)
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="Exercises">
+          Exercises
+        </a>
+      
     </div>
+  </div>
 
-    <div class="ui segment pushable">
-      <div class="ui inverted labeled icon left inline vertical sidebar menu">
-        <br><br>
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
         
           
-            <a class="item" href="../../topic-02-crud/book-a-create/index.html">
-              Create
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-a-create/index.html">Create </a>
           
         
-          
-            <a class="active item" href="../../topic-02-crud/book-b-read/index.html">
-              Read (find)
-            </a>
-          
+      
         
           
-            <a class="item" href="../../topic-02-crud/book-c-update/index.html">
-              Update
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-b-read/index.html">Read (find) </a>
           
         
-          
-            <a class="item" href="../../topic-02-crud/book-d-delete/index.html">
-              Delete
-            </a>
-          
+      
         
           
-            <a class="item" href="../../topic-04-backup/book-a-backup/index.html">
-              Backup
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-c-update/index.html">Update </a>
           
         
-      </div>
-      <div class="pusher" tabindex="-1">
-        <div class="ui basic segment" id="labchat">
-          <br>
+      
+        
           
-            <div  class="ui tab segment lab" data-tab="Read (find)">
-              <h1>Read (find)</h1>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-d-delete/index.html">Delete </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-04-backup/book-a-backup/index.html">Backup </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Read (find)">
+            <h1>Read (find)</h1>
 <p>In this lab, we will explore the find() statement in MongoDB, including a range of operators used to filter query results.</p>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="01">
-              <h1>find() queries</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h1>find() queries</h1>
 <h2>Find All Documents in a Collection</h2>
 <p>The find() method with no parameters returns all documents from a collection and returns all fields for the documents. For example, the following operation returns all documents in the bios collection:</p>
 <pre><code>db.bios.find()</code></pre>
@@ -171,10 +209,10 @@ h3 {
   ]}
 ).pretty()</code></pre>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="02">
-              <h1>Find Documents that Match Query Criteria</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h1>Find Documents that Match Query Criteria</h1>
 <p>To find documents that match a set of selection criteria, call find() with the <code>&lt;criteria&gt;</code> parameter. The following operation returns all the documents from the collection products where qty is greater than 25:</p>
 <pre><code>db.products.find( { qty: { $gt: 25 } } )</code></pre>
 <p>The following operation returns documents in the bios collection where <code>_id</code> equals either 5 or ObjectId(&quot;507c35dd8fada716c89d0013&quot;):</p>
@@ -228,10 +266,10 @@ h3 {
 </tbody>
 </table>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="03">
-              <h1>Ranges and Arrays</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h1>Ranges and Arrays</h1>
 <h2>Query for Ranges</h2>
 <p>Combine comparison operators to specify ranges. The following operation returns documents with field between value1 and value2:</p>
 <pre><code>db.collection.find( { field: { $gt: value1, $lt: value2 } } );</code></pre>
@@ -264,10 +302,10 @@ h3 {
    }
 )</code></pre>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="Exercises">
-              <h1>Exercises</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="Exercises">
+            <h1>Exercises</h1>
 <ol>
 <li>Find all documents that relate to student 4 and class 0.</li>
 <li>Find all documents that relate to either student 2 or class 23.</li>
@@ -279,28 +317,36 @@ h3 {
 <li>Find quiz scores greater than or equal to 35 and less than or equal to 40.</li>
 </ol>
 
-            </div>
-          
-        </div>
+          </div>
+        
       </div>
     </div>
+  </div>
 
-    <script>
-      $(document).ready(function() {
-  const $images = $('.lab img');
-  jQuery.each($images, function(i) {
-    if ($images[i].alt.length > 0) {
-      const divImg = $(document.createElement('div')).addClass('');
-      $($images[i]).wrap(divImg);
-      const divLabel = $(document.createElement('div')).addClass('uk-label uk-text-lowercase');
-      divLabel.append($images[i].alt);
-      $(divLabel).insertAfter($images[i]);
-      $('<br>').insertAfter($images[i]);
-    }
-  });
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
 });
 
-      $(document).ready(function() {
+    $(document).ready(function() {
   $('img').addClass('ui image');
 
   $('.ui.embed').embed();
@@ -333,6 +379,18 @@ h3 {
     .sidebar('attach events', '#toc');
 });
 
-    </script>
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> 
+      </div>
+    </div>
+  </div>
+
   </body>
+
 </html>

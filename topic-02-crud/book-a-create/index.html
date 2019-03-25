@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"
+          type="text/css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css"
+          rel="stylesheet"/>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/java.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/kotlin.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <style>
       
@@ -57,96 +66,125 @@ h3 {
 
 
 
+      
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  background: white;
+  text-align: right;
+}
+.content {
+  flex: 1;
+  overflow: auto;
+}
+
+
+
     </style>
   </head>
 
-  <body>
-    
-    
+  
+  
 
-    <div class="ui fixed top pointing inverted stackable menu labmenu">
-      <header class="header item">
-        <i id="toc" class="sitemap icon"></i>
-        
-          <a href="../index.html">  CRUD  </a>
-        
-      </header>
-      <div class="right tab-menu menu">
-        
-          <a class="item" data-tab="Create">
-            Create
-          </a>
-        
-          <a class="item" data-tab="01">
-            01
-          </a>
-        
-          <a class="item" data-tab="02">
-            02
-          </a>
-        
-          <a class="item" data-tab="03">
-            03
-          </a>
-        
-          <a class="item" data-tab="04">
-            04
-          </a>
-        
-          <a class="item" data-tab="05">
-            05
-          </a>
-        
-      </div>
+  <div class="ui fixed top pointing inverted stackable menu labmenu">
+    <header class="header item">
+      <i id="toc" class="sitemap icon"></i>
+      
+        <a href="../index.html">  CRUD  </a>
+      
+    </header>
+    <div class="right tab-menu menu">
+      
+        <a class="item" data-tab="Create">
+          Create
+        </a>
+      
+        <a class="item" data-tab="01">
+          01
+        </a>
+      
+        <a class="item" data-tab="02">
+          02
+        </a>
+      
+        <a class="item" data-tab="03">
+          03
+        </a>
+      
+        <a class="item" data-tab="04">
+          04
+        </a>
+      
+        <a class="item" data-tab="05">
+          05
+        </a>
+      
     </div>
+  </div>
 
-    <div class="ui segment pushable">
-      <div class="ui inverted labeled icon left inline vertical sidebar menu">
-        <br><br>
+
+  
+
+  <div class="ui pushable">
+    <div class="ui inverted labeled icon left inline vertical sidebar menu">
+      <br><br>
+      
         
           
-            <a class="active item" href="../../topic-02-crud/book-a-create/index.html">
-              Create
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-a-create/index.html">Create </a>
           
         
-          
-            <a class="item" href="../../topic-02-crud/book-b-read/index.html">
-              Read (find)
-            </a>
-          
+      
         
           
-            <a class="item" href="../../topic-02-crud/book-c-update/index.html">
-              Update
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-b-read/index.html">Read (find) </a>
           
         
-          
-            <a class="item" href="../../topic-02-crud/book-d-delete/index.html">
-              Delete
-            </a>
-          
+      
         
           
-            <a class="item" href="../../topic-04-backup/book-a-backup/index.html">
-              Backup
-            </a>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-c-update/index.html">Update </a>
           
         
-      </div>
-      <div class="pusher" tabindex="-1">
-        <div class="ui basic segment" id="labchat">
-          <br>
+      
+        
           
-            <div  class="ui tab segment lab" data-tab="Create">
-              <h1>Objectives</h1>
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-02-crud/book-d-delete/index.html">Delete </a>
+          
+        
+      
+        
+          
+            <a class="item"
+               href="https://witnosql.github.io/nosqldatabases//topic-04-backup/book-a-backup/index.html">Backup </a>
+          
+        
+      
+    </div>
+    <div class="pusher" tabindex="-1">
+      <div class="ui basic segment">
+        <br>
+        
+          <div class="ui tab segment lab" data-tab="Create">
+            <h1>Objectives</h1>
 <p>This lab introduces the CREATE functions in MongoDB.</p>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="01">
-              <h1>MongoDB CRUD Overview</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="01">
+            <h1>MongoDB CRUD Overview</h1>
 <h2>Create Operations</h2>
 <p>Create or insert operations add new documents to a collection. If the collection does not currently exist, insert operations will create the collection.</p>
 <p>MongoDB provides the following methods to insert documents into a collection:</p>
@@ -171,10 +209,10 @@ db.collection.deleteOne()
 db.collection.deleteMany()</code></pre>
 <p>In MongoDB, delete operations target a single collection. You can specify criteria, or filters, that identify the documents to remove. These filters use the same syntax as read and update operations.</p>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="02">
-              <h1>grades.json</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="02">
+            <h1>grades.json</h1>
 <p>In this lab, we will import a set of documents from a JSON file and then work with this data. The JSON file contains student grades with the following information:</p>
 <ul>
 <li><code>_id</code> : each document has an id property, which has as its value an oid (object id)</li>
@@ -241,10 +279,10 @@ db.grades.find({class_id:2}).pretty()</code></pre>
 <p><img src="img/findclassid.png" alt=""></p>
 <p>We will discuss find() in greater detail in the next section. First, we will look at insert statements to add documents to our grades collection.</p>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="03">
-              <h1>db.collection.insert()</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="03">
+            <h1>db.collection.insert()</h1>
 <p>Inserts a document or documents into a collection.</p>
 <p>The insert() method has the following syntax:</p>
 <pre><code>db.products.insert( { _id: 10, item: &quot;box&quot;, qty: 20 } )</code></pre>
@@ -358,10 +396,10 @@ db.grades.find({class_id:2}).pretty()</code></pre>
 </li>
 </ul>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="04">
-              <h1>db.collection.insertOne()</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="04">
+            <h1>db.collection.insertOne()</h1>
 <p>Inserts a single document into a collection.</p>
 <p>The insertOne() method has the following syntax:</p>
 <pre><code>db.products.insertOne( { item: &quot;card&quot;, qty: 15 } );</code></pre>
@@ -430,10 +468,10 @@ db.grades.find({class_id:2}).pretty()</code></pre>
 <li>Add try, catch, and print (as shown above), and try to insert the document once more. Compare this error message with the previous one.</li>
 </ul>
 
-            </div>
-          
-            <div  class="ui tab segment lab" data-tab="05">
-              <h1>db.collection.insertMany()</h1>
+          </div>
+        
+          <div class="ui tab segment lab" data-tab="05">
+            <h1>db.collection.insertMany()</h1>
 <p>Inserts multiple documents into a collection.</p>
 <p>The insertMany() method has the following syntax:</p>
 <pre><code>db.products.insertMany( [
@@ -553,28 +591,36 @@ db.grades.find({class_id:2}).pretty()</code></pre>
 </li>
 </ul>
 
-            </div>
-          
-        </div>
+          </div>
+        
       </div>
     </div>
+  </div>
 
-    <script>
-      $(document).ready(function() {
-  const $images = $('.lab img');
-  jQuery.each($images, function(i) {
-    if ($images[i].alt.length > 0) {
-      const divImg = $(document.createElement('div')).addClass('');
-      $($images[i]).wrap(divImg);
-      const divLabel = $(document.createElement('div')).addClass('uk-label uk-text-lowercase');
-      divLabel.append($images[i].alt);
-      $(divLabel).insertAfter($images[i]);
-      $('<br>').insertAfter($images[i]);
-    }
-  });
+
+  <br>
+  <script>
+    $(document).on('keydown', function(e) {
+  e = e || window.event;
+  var nextTab;
+  switch (e.which || e.keyCode) {
+    case 37: // left
+      nextTab = $('.tab-menu a[data-tab].active').prev('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').last();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+
+    case 39: // right
+      nextTab = $('.tab-menu a[data-tab].active').next('a[data-tab]');
+      if (!nextTab.length) nextTab = $('.tab-menu a[data-tab]').first();
+      nextTab.click();
+      $('.pusher').focus();
+      break;
+  }
 });
 
-      $(document).ready(function() {
+    $(document).ready(function() {
   $('img').addClass('ui image');
 
   $('.ui.embed').embed();
@@ -607,6 +653,18 @@ db.grades.find({class_id:2}).pretty()</code></pre>
     .sidebar('attach events', '#toc');
 });
 
-    </script>
+  </script>
+
+
+
+  <div class="ui bottom fixed borderless right menu">
+    <div class="ui right small menu">
+      <div class="ui tiny basic message segment">
+         Powered by <a href="https://github.com/edeleastar/tutors-ts">tutors-ts.</a> 
+      </div>
+    </div>
+  </div>
+
   </body>
+
 </html>

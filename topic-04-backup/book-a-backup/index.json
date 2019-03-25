@@ -1,0 +1,47 @@
+
+
+
+  {
+  
+  
+    "properties" : {},
+  
+  "type" : "lab",
+  "title" : "Backup",
+  "img" : "img/main.png",
+  "videoid" : "none",
+  "objectives" : "<p>This lab examines the functions used to backup and restore data in MongoDB.</p>",
+  "folder" : "book-a-backup",
+  "link" : "index.html",
+  "los": [
+   ]
+,
+  "chapters" : [
+  
+    {
+    "title": "# Objectives",
+    "shortTitle": "Backup",
+    "contentMd" : "# Objectives\r\n\r\nThis lab examines the functions used to backup and restore data in MongoDB.\r\n"
+    },
+  
+    {
+    "title": "# Back up a MongoDB database using mongodump",
+    "shortTitle": "01",
+    "contentMd" : "# Back up a MongoDB database using mongodump\r\n\r\n\r\n## mongodump\r\n\r\nThe mongodump function is used to create a backup of a whole database (or a single collection). The mongodump command should be run in the **system command prompt**, not in the mongodb shell.\r\n\r\nThe command shown here will create a backup of the grades database.\r\n\r\n~~~\r\nmongodump --db grades\r\n~~~\r\n\r\nTo create a backup of a single collection in a database, you would use the following command:\r\n\r\n~~~\r\nmongodump --db college --collection students\r\n~~~\r\n\r\nThe mongodump function outputs a folder containing a BSON (binary JSON) file and a metadata file. You may need to specify an output folder for the function, especially on the college computers where you don't have write access for the C: drive. Use this syntax to specify an output folder:\r\n\r\n~~~\r\nmongodump --db grades --out G:\\dump\r\n~~~\r\n\r\nYou should see the following output after a successful dump operation:\r\n\r\n![](img/01.png)\r\n\r\nConfirm that the files have been created in the folder you specified.\r\n\r\n![](img/02.png)\r\n"
+    },
+  
+    {
+    "title": "# Using mongorestore to restore a MongoDB database",
+    "shortTitle": "02",
+    "contentMd" : "# Using mongorestore to restore a MongoDB database\n\nWe will now restore the backup we created to confirm that it was successful. First, we need to drop the grades database.\n\n## Drop the grades database\n\nExecute the following commands from the mongo.exe client (one at a time)\n\n~~~\nshow dbs\nuse grades\ndb.dropDatabase()\nshow dbs\n~~~\n\nYou should see the following output:\n\n![](img/05.png)\n\n\n## Restore the grades database\n\nRun this command from the **system command prompt**:\n\n~~~\nmongorestore --db grades G:\\dump\\grades\n~~~\n\nNote that the location should match the location of your mongodump output folder.\n\nYou should see the following output:\n\n![](img/04.png)\n\nBack in the mongo.exe client, run the show dbs command again. You should see the following output, confirming that the grades database has been restored. Run a find() operation to confirm that the data can be read.  \n\n![](img/05.png)\n"
+    },
+  
+    {
+    "title": "# Exercises",
+    "shortTitle": "Exercises",
+    "contentMd" : "# Exercises\n\n1. Examine the <a href=\"https://docs.mongodb.com/manual/reference/program/mongoexport/\" target=\"_ blank\">mongoexport</a> function, which can be used to export a single collection as a JSON file.\n2. Examine <a href=\"https://docs.mongodb.com/manual/reference/program/mongoimport/\" target=\"_ blank\">mongoimport</a>, which imports data from a JSON file. \n"
+    }
+  
+  ]
+  }
+
